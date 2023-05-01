@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  authdb:
+    image: docker.io/bitnami/postgresql:15
+    restart: unless-stopped
+    volumes:
+      - auth_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_USERNAME=auth_user
+      - POSTGRESQL_PASSWORD=password123
+      - POSTGRESQL_DATABASE=auth_db
+    networks:
+      - auth_network
+
+  auth:
+    container_name: auth
+    build:
+      context: ./
+      dockerfile: tools/docker/auth/Dockerfile
+      target: dev
+    ports:
+      - "9091:9000"
+    volumes:
+      - .:/app
+    networks:
+      - auth_network
+
+
+
+networks:
+  auth_network:
+
+volumes:
+  auth_data:
+    driver: local
