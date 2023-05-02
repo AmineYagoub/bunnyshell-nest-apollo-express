@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/auth-service"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Permission {
+  id                    String    @id @default(uuid())
+  title                 String    @db.VarChar(100) @unique
+  description           String?   @db.VarChar(250) @default("")
+  created               DateTime  @default(now())
+  updated               DateTime  @updatedAt
+  roles                 Role[]
+}
+
+model Role {
+  id                    String    @id @default(uuid())
+  title                 String    @db.VarChar(100) @unique
+  description           String?   @db.VarChar(250) @default("")
+  created               DateTime  @default(now())
+  updated               DateTime  @updatedAt
+  permissions           Permission[]
+  users                 User[]
+}
+
+
+model User {
+  id                    String    @id @default(uuid())
+  email                 String    @db.VarChar(100) @unique
+  password              String    @db.Char(255)
+  isActive              Boolean?  @default(false)
+
+  created               DateTime  @default(now())
+  updated               DateTime  @updatedAt
+
+  roleId                String
+  role                  Role      @relation(fields: [roleId], references: [id], onDelete: NoAction)
+
+  @@index([isActive(sort: Desc)])
+}
