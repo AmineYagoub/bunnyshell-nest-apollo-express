@@ -1,0 +1,32 @@
+import { Field } from '@nestjs/graphql';
+import { InputType } from '@nestjs/graphql';
+import { StringFilter } from '../prisma/string-filter.input';
+import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { DateTimeFilter } from '../prisma/date-time-filter.input';
+
+@InputType()
+export class PermissionScalarWhereInput {
+  @Field(() => [PermissionScalarWhereInput], { nullable: true })
+  AND?: Array<PermissionScalarWhereInput>;
+
+  @Field(() => [PermissionScalarWhereInput], { nullable: true })
+  OR?: Array<PermissionScalarWhereInput>;
+
+  @Field(() => [PermissionScalarWhereInput], { nullable: true })
+  NOT?: Array<PermissionScalarWhereInput>;
+
+  @Field(() => StringFilter, { nullable: true })
+  id?: StringFilter;
+
+  @Field(() => StringFilter, { nullable: true })
+  title?: StringFilter;
+
+  @Field(() => StringNullableFilter, { nullable: true })
+  description?: StringNullableFilter;
+
+  @Field(() => DateTimeFilter, { nullable: true })
+  created?: DateTimeFilter;
+
+  @Field(() => DateTimeFilter, { nullable: true })
+  updated?: DateTimeFilter;
+}
