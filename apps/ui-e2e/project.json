@@ -21,6 +21,8 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "fix": true,
+        "cache": true,
         "lintFilePatterns": ["apps/ui-e2e/**/*.{js,ts}"]
       }
     }

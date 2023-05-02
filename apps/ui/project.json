@@ -61,7 +61,9 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/ui/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/ui/**/*.{ts,tsx,js,jsx}"],
+        "fix": true,
+        "cache": true
       }
     }
   },

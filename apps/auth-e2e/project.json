@@ -15,6 +15,8 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
+        "fix": true,
+        "cache": true,
         "lintFilePatterns": ["apps/auth-e2e/**/*.{js,ts}"]
       }
     }

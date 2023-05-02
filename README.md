@@ -22,3 +22,4 @@ Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 - https://scal.io/work/bazel-nx-monorepo
 - https://github.com/RafaelGoulartB/next-ecommerce
+- https://www.youtube.com/watch?v=t0Fs0NO78X8
