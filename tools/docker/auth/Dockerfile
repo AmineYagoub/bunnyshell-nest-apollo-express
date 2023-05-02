@@ -3,7 +3,7 @@ FROM node:18-alpine as dev
 ENV NODE_ENV development
 
 # Needed for VS Code Remote Development
-RUN apk add musl libgcc libstdc++ git curl wget bash ca-certificates gcompat openssh-client libc6 libstdc++6 python-minimal
+RUN apk add musl libgcc libstdc++ git curl wget bash ca-certificates gcompat openssh-client libc6-compat libstdc++6 python3
 
 
 # App directory
