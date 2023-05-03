@@ -1,9 +1,10 @@
-FROM node:18-alpine as dev
+ARG VARIANT=18-bullseye
+FROM mcr.microsoft.com/devcontainers/typescript-node:0-${VARIANT} as dev
 
 ENV NODE_ENV development
 
-# Needed for VS Code Remote Development
-RUN apk add musl libgcc libstdc++ git curl wget bash ca-certificates gcompat openssh-client libc6-compat libstdc++6 python3
+# Needed for Development
+RUN su node -c "npm install -g nx @nestjs/cli"
 
 
 # App directory
