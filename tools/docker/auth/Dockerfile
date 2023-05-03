@@ -3,16 +3,12 @@ FROM mcr.microsoft.com/devcontainers/typescript-node:0-${VARIANT} as dev
 
 ENV NODE_ENV development
 
-# Needed for Development
-RUN su node -c "npm install -g nx @nestjs/cli"
-
-
 # App directory
 WORKDIR /app
 
 # App dependencies
 COPY package*.json ./
-RUN su node -c "npm install"
+RUN su node -c "npm install && npm install -g nx @nestjs/cli"
 
 # Copy app source code
 COPY . .
@@ -20,6 +16,8 @@ COPY . .
 #Expose port and begin application
 EXPOSE 9000
 ENV PORT 9000
+
+RUN npm run auth:gen
 # Start the app
 CMD [ "npm", "run", "auth"]
 
