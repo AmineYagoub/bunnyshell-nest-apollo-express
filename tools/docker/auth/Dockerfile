@@ -12,7 +12,7 @@ WORKDIR /app
 
 # App dependencies
 COPY package*.json ./
-RUN npm ci
+RUN su node -c "npm install"
 
 # Copy app source code
 COPY . .
