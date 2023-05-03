@@ -1,6 +1,6 @@
 ARG VARIANT=18-bullseye
 FROM mcr.microsoft.com/devcontainers/typescript-node:0-${VARIANT} as dev
-
+USER root
 ENV NODE_ENV development
 
 # App directory
@@ -8,7 +8,7 @@ WORKDIR /app
 
 # App dependencies
 COPY package*.json ./
-RUN su node -c "npm install && npm install -g nx @nestjs/cli"
+RUN npm install && npm install -g nx @nestjs/cli
 
 # Copy app source code
 COPY . .
