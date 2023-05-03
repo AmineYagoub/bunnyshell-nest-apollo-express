@@ -27,6 +27,7 @@ services:
       - DATABASE_URL=postgresql://auth_user:password123@authdb:5432/auth_db?schema=public
     volumes:
       - .:/app
+      - auth_dev:/
     networks:
       - auth_network
 
@@ -35,4 +36,6 @@ networks:
 
 volumes:
   auth_data:
+    driver: local
+  auth_dev:
     driver: local
